@@ -5,8 +5,8 @@
 #
 
 PROGNAME=`basename $0`
-INSTALLER_DIR=/opt/inspec
-CONFIG_DIR=/etc/inspec
+INSTALLER_DIR=/opt/cinc-auditor
+CONFIG_DIR=/etc/cinc-auditor
 USAGE="usage: $0"
 
 error_exit()
@@ -27,7 +27,7 @@ else
     PREFIX="/usr"
 fi
 
-binaries="inspec"
+binaries="cinc-auditor"
 for binary in $binaries; do
   rm -f $PREFIX/bin/$binary
 done
@@ -36,11 +36,20 @@ for binary in $binaries; do
   ln -sf $INSTALLER_DIR/bin/$binary $PREFIX/bin || error_exit "Cannot link $binary to $PREFIX/bin"
 done
 
+wrapper_links="inspec"
+link_target="cinc-auditor-wrapper"
+for link in $wrapper_links; do
+  if [ ! -e $PREFIX/bin/$link ]; then
+    echo "Symlinking inspec command to cinc-auditor for compatibility..."
+    ln -sf $INSTALLER_DIR/bin/$link_target $PREFIX/bin/$link || error_exit "Cannot link $link_target to $PREFIX/bin/$link"
+  fi
+done
+
 # Ensure all files/directories in $INSTALLER_DIR are owned by root. This
 # has been fixed on new installs but upgrades from old installs need to
 # be manually fixed.
 chown -Rh 0:0 $INSTALLER_DIR
 
-echo "Thank you for installing Chef InSpec!"
+echo "Thank you for installing Cinc Auditor!"
 
 exit 0
