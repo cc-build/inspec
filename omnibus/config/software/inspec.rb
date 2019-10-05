@@ -1,5 +1,6 @@
 #
 # Copyright:: Copyright 2016-2019, Chef Software Inc.
+# Copyright:: Copyright 2019, Cinc Project
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -55,4 +56,6 @@ build do
     gem_install_dir = shellout!("#{install_dir}/embedded/bin/gem open rubyzip", env: env).stdout.chomp
     remove_directory "#{gem_install_dir}/test"
   end
+
+  copy "#{project_dir}/cinc-auditor/cinc-auditor-wrapper", "#{install_dir}/bin/"
 end
