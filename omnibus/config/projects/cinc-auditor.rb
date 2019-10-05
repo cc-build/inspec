@@ -1,5 +1,6 @@
 #
 # Copyright:: Copyright 2016-2018, Chef Software Inc.
+# Copyright:: Copyright 2019, Cinc Project
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,18 +18,18 @@
 
 require_relative "../../../lib/inspec/version"
 
-name "inspec"
-friendly_name "InSpec"
-maintainer "Chef Software, Inc <maintainers@chef.io>"
-homepage "https://github.com/inspec/inspec"
+name "cinc-auditor"
+friendly_name "Cinc Auditor"
+maintainer "Cinc Project <maintainers@cinc.sh>"
+homepage "https://gitlab.com/cinc-project/auditor"
 
-license "Chef EULA"
-license_file "CHEF-EULA.md"
+license "Apache-2.0"
+license_file "../LICENSE"
 
 # Defaults to C:/opscode/inspec on Windows
 # and /opt/inspec on all other platforms.
 if windows?
-  install_dir "#{default_root}/opscode/#{name}"
+  install_dir "#{default_root}/cinc-project/#{name}"
 else
   install_dir "#{default_root}/#{name}"
 end
@@ -54,7 +55,7 @@ dependency "shebang-cleanup"
 dependency "openssl-customization"
 
 package :rpm do
-  signing_passphrase ENV["OMNIBUS_RPM_SIGNING_PASSPHRASE"]
+  # signing_passphrase ENV["OMNIBUS_RPM_SIGNING_PASSPHRASE"]
   compression_level 1
   compression_type :xz
 end
@@ -65,8 +66,8 @@ package :deb do
 end
 
 package :pkg do
-  identifier "com.getchef.pkg.inspec"
-  signing_identity "Chef Software, Inc. (EU3VF8YLX2)"
+  identifier "com.cinc-project.pkg.cinc-auditor"
+  # signing_identity "Chef Software, Inc. (EU3VF8YLX2)"
 end
 compress :dmg
 
@@ -74,7 +75,7 @@ package :msi do
   fast_msi true
   upgrade_code "DFCD452F-31E5-4236-ACD1-253F4720250B"
   wix_light_extension "WixUtilExtension"
-  signing_identity "AF21BA8C9E50AE20DA9907B6E2D4B0CC3306CA03", machine_store: true
+  # signing_identity "AF21BA8C9E50AE20DA9907B6E2D4B0CC3306CA03", machine_store: true
 end
 
 exclude "**/.git"
