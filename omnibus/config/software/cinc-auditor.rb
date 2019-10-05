@@ -1,5 +1,6 @@
 #
 # Copyright:: Copyright 2016-2019, Chef Software Inc.
+# Copyright:: Copyright 2019, Cinc Project
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -53,4 +54,6 @@ build do
       appbundle "cinc-auditor", env: env
     end
   end
+
+  copy "#{project_dir}/cinc-auditor/cinc-auditor-wrapper", "#{install_dir}/bin/"
 end
