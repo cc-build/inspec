@@ -7,7 +7,7 @@ gem "inspec", path: "."
 #
 # However, AppBundler requires a top-level Gemfile.lock with inspec-bin
 # in it in order to package the executable. Hence the odd backwards dependency.
-gem "inspec-bin", path: "./inspec-bin"
+gem "cinc-auditor-bin", path: "./inspec-bin"
 
 gem "ffi", ">= 1.9.14", "!= 1.13.0", "!= 1.14.2"
 
