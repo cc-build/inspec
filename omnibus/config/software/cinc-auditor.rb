@@ -17,7 +17,7 @@
 #
 require_relative "../../../lib/inspec/version"
 
-name "inspec"
+name "cinc-auditor"
 
 dependency "ruby"
 
@@ -32,23 +32,24 @@ build do
   env = with_standard_compiler_flags(with_embedded_path)
 
   # Remove existing built gems in case they exist in the current dir
-  delete "#{name}-*.gem"
+  delete "inspec-*.gem"
+  delete "inspec-bin/#{name}-*.gem"
 
   # We bundle install to ensure the versions of gems we are going to
   # appbundle-lock to are definitely installed
   bundle "install --without test integration tools maintenance", env: env
 
-  gem "build #{name}-core.gemspec", env: env
-  gem "install #{name}-core*.gem --no-document", env: env
+  gem "build inspec-core.gemspec", env: env
+  gem "install inspec-core*.gem --no-document", env: env
 
-  gem "build #{name}.gemspec", env: env
-  gem "install #{name}-*.gem --no-document", env: env
+  gem "build inspec.gemspec", env: env
+  gem "install inspec-*.gem --no-document", env: env
 
-  gem "build inspec-bin.gemspec", env: env, cwd: "#{project_dir}/inspec-bin"
-  gem "install inspec-bin-*.gem --no-document", env: env, cwd: "#{project_dir}/inspec-bin"
+  gem "build cinc-auditor-bin.gemspec", env: env, cwd: "#{project_dir}/inspec-bin"
+  gem "install cinc-auditor-bin-*.gem --no-document", env: env, cwd: "#{project_dir}/inspec-bin"
 
   block do
-    appbundle "inspec", lockdir: project_dir, gem: "inspec-bin", env: env
+    appbundle "cinc-auditor", lockdir: project_dir, gem: "cinc-auditor-bin", env: env
   end
 
   block "Delete test folder from problem gems" do
