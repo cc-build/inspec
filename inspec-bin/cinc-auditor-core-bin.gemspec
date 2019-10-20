@@ -6,13 +6,13 @@ require "inspec-bin/version"
 # inspec-core is a stripped-down version of the inspec gem with fewer exotic dependencies
 
 Gem::Specification.new do |spec|
-  spec.name          = "inspec-core-bin" # dallas multi-pass
+  spec.name          = "cinc-auditor-core-bin" # dallas multi-pass
   spec.version       = InspecBin::VERSION
-  spec.authors       = ["Chef InSpec Core Engineering "]
-  spec.email         = ["inspec@chef.io"]
+  spec.authors       = ["Chef InSpec Core Engineering", "Cinc Project"]
+  spec.email         = ["inspec@chef.io", "maintainers@cinc.sh"]
   spec.summary       = "Infrastructure and compliance testing."
-  spec.description   = "InSpec executable for inspec-core gem. Use of this executable may require accepting a license agreement."
-  spec.homepage      = "https://github.com/inspec/inspec/tree/master/inspec-bin"
+  spec.description   = "Cinc Auditor (a community distribution of InSpec) executable for inspec-core gem."
+  spec.homepage      = "https://gitlab.com/cinc-project/auditor"
   spec.license       = "Apache-2.0"
 
   spec.require_paths = ["lib"]
@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "inspec-core", "= #{InspecBin::VERSION}"
   spec.add_development_dependency "rake"
 
-  spec.files = %w{README.md LICENSE Gemfile} + ["inspec-core-bin.gemspec"] +
+  spec.files = %w{README.md LICENSE Gemfile} + ["cinc-auditor-core-bin.gemspec"] +
     Dir.glob("{lib,bin}/**/*", File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
 
   spec.bindir = "bin"
