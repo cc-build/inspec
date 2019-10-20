@@ -42,7 +42,7 @@ instance_eval(File.read(overrides_path), overrides_path)
 
 dependency "preparation"
 
-dependency "inspec"
+dependency "cinc-auditor"
 
 # Mark all directories world readable.
 dependency "gem-permissions"

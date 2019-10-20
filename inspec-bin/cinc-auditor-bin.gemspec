@@ -3,13 +3,13 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "inspec-bin/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "inspec-bin"
+  spec.name          = "cinc-auditor-bin"
   spec.version       = InspecBin::VERSION
-  spec.authors       = ["Chef InSpec Core Engineering "]
-  spec.email         = ["inspec@chef.io"]
+  spec.authors       = ["Chef InSpec Core Engineering", "Cinc Project"]
+  spec.email         = ["inspec@chef.io", "maintainers@cinc.sh"]
   spec.summary       = "Infrastructure and compliance testing."
-  spec.description   = "InSpec executable for inspec gem. Use of this executable may require accepting a license agreement."
-  spec.homepage      = "https://github.com/inspec/inspec/tree/master/inspec-bin"
+  spec.description   = "Cinc Auditor (a community distribution of InSpec) executable for inspec gem."
+  spec.homepage      = "https://gitlab.com/cinc-project/auditor"
   spec.license       = "Apache-2.0"
 
   spec.require_paths = ["lib"]
