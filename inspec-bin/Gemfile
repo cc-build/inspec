@@ -1,7 +1,7 @@
 source "https://rubygems.org"
-main_gemspec = File.expand_path("inspec-bin.gemspec", __dir__)
+main_gemspec = File.expand_path("cinc-auditor-bin.gemspec", __dir__)
 if File.exist?(main_gemspec)
-  gemspec name: "inspec-bin"
+  gemspec name: "cinc-auditor-bin"
 else
-  gemspec name: "inspec-core-bin"
+  gemspec name: "cinc-auditor-core-bin"
 end
