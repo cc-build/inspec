@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-LABEL maintainer="Chef Software, Inc. <docker@chef.io>"
+LABEL maintainer="Cinc Project <docker@cinc.sh>"
 
 ARG VERSION=4.24.32
 ARG CHANNEL=stable
@@ -22,11 +22,11 @@ RUN mkdir -p /share
 
 RUN apt-get update && \
     apt-get install -y wget rpm2cpio cpio && \
-    wget "http://packages.chef.io/files/${CHANNEL}/inspec/${VERSION}/el/7/inspec-${VERSION}-1.el7.x86_64.rpm" -O /tmp/inspec.rpm && \
-    rpm2cpio /tmp/inspec.rpm | cpio -idmv && \
-    rm -rf /tmp/inspec.rpm
+    wget "http://ftp-osl.osuosl.org/pub/cinc/files/${CHANNEL}/cinc-auditor/${VERSION}/el/7/cinc-auditor-${VERSION}-1.el7.x86_64.rpm" -O /tmp/cinc-auditor.rpm && \
+    rpm2cpio /tmp/cinc-auditor.rpm | cpio -idmv && \
+    rm -rf /tmp/cinc-auditor.rpm
 
-ENTRYPOINT ["inspec"]
+ENTRYPOINT ["cinc-auditor"]
 CMD ["help"]
 VOLUME ["/share"]
 WORKDIR /share
