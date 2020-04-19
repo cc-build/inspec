@@ -1,10 +1,10 @@
 FROM ubuntu:18.04
-LABEL maintainer="Chef Software, Inc. <docker@chef.io>"
+LABEL maintainer="Cinc Project <docker@cinc.sh>"
 
 ARG VERSION=4.26.13
 ARG CHANNEL=stable
 
-ENV PATH=/opt/inspec/bin:/opt/inspec/embedded/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV PATH=/opt/cinc-auditor/bin:/opt/cinc-auditor/embedded/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # Run the entire container with the default locale to be en_US.UTF-8
 RUN apt-get update && \
@@ -22,11 +22,11 @@ RUN mkdir -p /share
 
 RUN apt-get update && \
     apt-get install -y wget rpm2cpio cpio && \
-    wget "http://packages.chef.io/files/${CHANNEL}/inspec/${VERSION}/el/7/inspec-${VERSION}-1.el7.x86_64.rpm" -O /tmp/inspec.rpm && \
-    rpm2cpio /tmp/inspec.rpm | cpio -idmv && \
-    rm -rf /tmp/inspec.rpm
+    wget "http://ftp-osl.osuosl.org/pub/cinc/files/${CHANNEL}/cinc-auditor/${VERSION}/el/7/cinc-auditor-${VERSION}-1.el7.x86_64.rpm" -O /tmp/cinc-auditor.rpm && \
+    rpm2cpio /tmp/cinc-auditor.rpm | cpio -idmv && \
+    rm -rf /tmp/cinc-auditor.rpm
 
-ENTRYPOINT ["inspec"]
+ENTRYPOINT ["cinc-auditor"]
 CMD ["help"]
 VOLUME ["/share"]
 WORKDIR /share
