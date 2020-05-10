@@ -1,7 +1,7 @@
 require "net/http"
 require "uri"
 require "json"
-require "inspec/dist"
+require "chef-utils/dist"
 
 require_relative "api/login"
 require_relative "configuration"
@@ -16,7 +16,6 @@ module InspecPlugins
     # API Implementation does not hold any state by itself,
     # everything will be stored in local Configuration store
     class API
-      include Inspec::Dist
       extend InspecPlugins::Compliance::API::Login
 
       # return all compliance profiles available for the user
@@ -298,13 +297,13 @@ module InspecPlugins
         if response.code == "400"
           Inspec::Log.debug(
             "Received 400 from #{url}#{automate_endpoint} - " \
-            "assuming target is a #{AUTOMATE_PRODUCT_NAME}2 instance"
+            "assuming target is a #{ChefUtils::Dist::Automate::PRODUCT}2 instance"
           )
           true
         else
           Inspec::Log.debug(
             "Received #{response.code} from #{url}#{automate_endpoint} - " \
-            "assuming target is not an #{AUTOMATE_PRODUCT_NAME}2 instance"
+            "assuming target is not an #{ChefUtils::Dist::Automate::PRODUCT}2 instance"
           )
           false
         end
@@ -317,24 +316,24 @@ module InspecPlugins
         when "401"
           Inspec::Log.debug(
             "Received 401 from #{url}#{automate_endpoint} - " \
-            "assuming target is a #{AUTOMATE_PRODUCT_NAME} instance"
+            "assuming target is a #{ChefUtils::Dist::Automate::PRODUCT} instance"
           )
           true
         when "200"
           # Chef Automate currently returns 401 for `/compliance/version` but some
           # versions of OpsWorks Chef Automate return 200 and a Chef Manage page
           # when unauthenticated requests are received.
-          if response.body.include?("Are You Looking For the #{SERVER_PRODUCT_NAME}?")
+          if response.body.include?("Are You Looking For the #{ChefUtils::Dist::Server::PRODUCT}?")
             Inspec::Log.debug(
               "Received 200 from #{url}#{automate_endpoint} - " \
-              "assuming target is an #{AUTOMATE_PRODUCT_NAME} instance"
+              "assuming target is an #{ChefUtils::Dist::Automate::PRODUCT} instance"
             )
             true
           else
             Inspec::Log.debug(
               "Received 200 from #{url}#{automate_endpoint} " \
               "but did not receive the Chef Manage page - " \
-              "assuming target is not a #{AUTOMATE_PRODUCT_NAME} instance"
+              "assuming target is not a #{ChefUtils::Dist::Automate::PRODUCT} instance"
             )
             false
           end
@@ -342,7 +341,7 @@ module InspecPlugins
           Inspec::Log.debug(
             "Received unexpected status code #{response.code} " \
             "from #{url}#{automate_endpoint} - " \
-            "assuming target is not a #{AUTOMATE_PRODUCT_NAME} instance"
+            "assuming target is not a #{ChefUtils::Dist::Automate::PRODUCT} instance"
           )
           false
         end
@@ -357,7 +356,7 @@ module InspecPlugins
 
         Inspec::Log.debug(
           "Received 200 from #{url}#{compliance_endpoint} - " \
-          "assuming target is a #{COMPLIANCE_PRODUCT_NAME} server"
+          "assuming target is a #{ChefUtils::Dist::Compliance::PRODUCT} server"
         )
         true
       end

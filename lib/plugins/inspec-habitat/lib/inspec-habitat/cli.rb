@@ -1,5 +1,5 @@
 require_relative "profile"
-require "inspec/dist"
+require "chef-utils/dist"
 
 module InspecPlugins
   module Habitat
@@ -29,12 +29,11 @@ module InspecPlugins
     end
 
     class CLI < Inspec.plugin(2, :cli_command)
-      include Inspec::Dist
 
-      subcommand_desc "habitat SUBCOMMAND", "Manage Habitat with #{PRODUCT_NAME}"
+      subcommand_desc "habitat SUBCOMMAND", "Manage Habitat with #{ChefUtils::Dist::Inspec::PRODUCT}"
       namespace "habitat"
 
-      desc "profile", "Manage #{PRODUCT_NAME} profiles as Habitat artifacts"
+      desc "profile", "Manage #{ChefUtils::Dist::Inspec::PRODUCT} profiles as Habitat artifacts"
       subcommand "profile", ProfileCLI
     end
   end

@@ -2,7 +2,7 @@ require "thor"
 require "inspec/log"
 require "inspec/ui"
 require "inspec/config"
-require "inspec/dist"
+require "chef-utils/dist"
 require "inspec/utils/deprecation/global_method"
 
 # Allow end of options during array type parsing
@@ -44,13 +44,13 @@ module Inspec
         if (allowed_commands & ARGV.map(&:downcase)).empty? && # Did they use a non-exempt command?
             !ARGV.empty? # Did they supply at least one command?
           LicenseAcceptance::Acceptor.check_and_persist(
-            Inspec::Dist::EXEC_NAME,
+            ChefUtils::Dist::Inspec::EXEC,
             Inspec::VERSION,
             logger: Inspec::Log
           )
         end
       rescue LicenseAcceptance::LicenseNotAcceptedError
-        Inspec::Log.error "#{Inspec::Dist::PRODUCT_NAME} cannot execute without accepting the license"
+        Inspec::Log.error "#{ChefUtils::Dist::Inspec::PRODUCT} cannot execute without accepting the license"
         Inspec::UI.new.exit(:license_not_accepted)
       end
     end

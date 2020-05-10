@@ -11,6 +11,10 @@ gem "inspec-bin", path: "./inspec-bin"
 
 gem "ffi", ">= 1.9.14"
 
+# 3rd party distribution support is implemented via ChefUtils
+# This local path needs to be removed before this is PRed upstream!
+gem "chef-utils", ">= 16.0.289", path: "../chef/chef-utils" 
+
 group :omnibus do
   gem "rb-readline"
   gem "appbundler"

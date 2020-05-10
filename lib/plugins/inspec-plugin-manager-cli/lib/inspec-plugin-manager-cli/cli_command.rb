@@ -1,7 +1,7 @@
 require "pathname"
 require "inspec/plugin/v2"
 require "inspec/plugin/v2/installer"
-require "inspec/dist"
+require "chef-utils/dist"
 
 module InspecPlugins
   module PluginManager
@@ -14,15 +14,13 @@ module InspecPlugins
         system_gem: "gem (system)",
       }.freeze
 
-      include Inspec::Dist
-
-      subcommand_desc "plugin SUBCOMMAND", "Manage #{PRODUCT_NAME} and Train plugins"
+      subcommand_desc "plugin SUBCOMMAND", "Manage #{ChefUtils::Dist::Inspec::PRODUCT} and Train plugins"
 
       #==================================================================#
       #                      inspec plugin list
       #==================================================================#
 
-      desc "list [options]", "Lists user-installed #{PRODUCT_NAME} plugins."
+      desc "list [options]", "Lists user-installed #{ChefUtils::Dist::Inspec::PRODUCT} plugins."
       option :all, desc: "List all types of plugins (default)", type: :boolean, default: true, aliases: [:a]
       option :user, desc: "List user plugins, from ~/.inspec/gems", banner: "", type: :boolean, default: false, aliases: [:u]
       option :system, desc: "List system plugins, those InSpec depends on", banner: "", type: :boolean, default: false, aliases: [:s]
@@ -62,7 +60,7 @@ module InspecPlugins
 
       desc "search [options] PATTERN", "Searches for plugins."
       long_desc <<~EOLD
-        Searches rubygems.org or alternate source for #{PRODUCT_NAME} plugins. Exits 0 on a search hit, 1 on user error,
+        Searches rubygems.org or alternate source for #{ChefUtils::Dist::Inspec::PRODUCT} plugins. Exits 0 on a search hit, 1 on user error,
         2 on a search miss. PATTERN is a simple string; a wildcard will be added as
         a suffix, unless -e is used.
       EOLD
@@ -232,7 +230,7 @@ module InspecPlugins
 
         # Already installed?
         if registry.known_plugin?(plugin_name.to_sym)
-          ui.red("Plugin already installed - #{plugin_name} - Use '#{EXEC_NAME} " \
+          ui.red("Plugin already installed - #{plugin_name} - Use '#{ChefUtils::Dist::Inspec::EXEC} " \
                  "plugin list' to see previously installed plugin - " \
                  "installation failed.\n")
           ui.exit Inspec::UI::EXIT_PLUGIN_ERROR

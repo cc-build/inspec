@@ -1,5 +1,5 @@
 require_relative "base"
-require "inspec/dist"
+require "chef-utils/dist"
 
 #
 # Notes:
@@ -73,9 +73,9 @@ require "inspec/dist"
 module InspecPlugins
   module Artifact
     class CLI < Inspec.plugin(2, :cli_command)
-      include Inspec::Dist
+      include ChefUtils::Dist::Inspec
 
-      subcommand_desc "artifact SUBCOMMAND", "Manage #{PRODUCT_NAME} Artifacts"
+      subcommand_desc "artifact SUBCOMMAND", "Manage #{PRODUCT} Artifacts"
 
       desc "generate", "Generate a RSA key pair for signing and verification"
       option :keyname, type: :string, required: true,

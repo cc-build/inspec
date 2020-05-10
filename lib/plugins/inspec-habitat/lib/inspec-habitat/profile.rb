@@ -2,13 +2,11 @@ require "inspec/profile_vendor"
 require "mixlib/shellout"
 require "tomlrb"
 require "ostruct"
-require "inspec/dist"
+require "chef-utils/dist"
 
 module InspecPlugins
   module Habitat
     class Profile
-      include Inspec::Dist
-
       attr_reader :logger, :options
       def initialize(path, options = {})
         @path    = path

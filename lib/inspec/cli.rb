@@ -1,7 +1,7 @@
 # Copyright 2015 Dominik Richter
 
 require "inspec/utils/deprecation/deprecator"
-require "inspec/dist"
+require "chef-utils/dist"
 require "inspec/backend"
 require "inspec/dependencies/cache"
 
@@ -226,55 +226,55 @@ class Inspec::InspecCLI < Inspec::BaseCLI
 
     Automate:
       ```
-      #{Inspec::Dist::EXEC_NAME} compliance login
-      #{Inspec::Dist::EXEC_NAME} exec compliance://username/linux-baseline
+      #{ChefUtils::Dist::Inspec::EXEC} compliance login
+      #{ChefUtils::Dist::Inspec::EXEC} exec compliance://username/linux-baseline
       ```
 
     Supermarket:
       ```
-      #{Inspec::Dist::EXEC_NAME} exec supermarket://username/linux-baseline
+      #{ChefUtils::Dist::Inspec::EXEC} exec supermarket://username/linux-baseline
       ```
 
     Local profile (executes all tests in `controls/`):
       ```
-      #{Inspec::Dist::EXEC_NAME} exec /path/to/profile
+      #{ChefUtils::Dist::Inspec::EXEC} exec /path/to/profile
       ```
 
     Local single test (doesn't allow inputs or custom resources)
       ```
-      #{Inspec::Dist::EXEC_NAME} exec /path/to/a_test.rb
+      #{ChefUtils::Dist::Inspec::EXEC} exec /path/to/a_test.rb
       ```
 
     Git via SSH
       ```
-      #{Inspec::Dist::EXEC_NAME} exec git@github.com:dev-sec/linux-baseline.git
+      #{ChefUtils::Dist::Inspec::EXEC} exec git@github.com:dev-sec/linux-baseline.git
       ```
 
     Git via HTTPS (.git suffix is required):
       ```
-      #{Inspec::Dist::EXEC_NAME} exec https://github.com/dev-sec/linux-baseline.git
+      #{ChefUtils::Dist::Inspec::EXEC} exec https://github.com/dev-sec/linux-baseline.git
       ```
 
     Private Git via HTTPS (.git suffix is required):
       ```
-      #{Inspec::Dist::EXEC_NAME} exec https://API_TOKEN@github.com/dev-sec/linux-baseline.git
+      #{ChefUtils::Dist::Inspec::EXEC} exec https://API_TOKEN@github.com/dev-sec/linux-baseline.git
       ```
 
     Private Git via HTTPS and cached credentials (.git suffix is required):
       ```
       git config credential.helper cache
       git ls-remote https://github.com/dev-sec/linux-baseline.git
-      #{Inspec::Dist::EXEC_NAME} exec https://github.com/dev-sec/linux-baseline.git
+      #{ChefUtils::Dist::Inspec::EXEC} exec https://github.com/dev-sec/linux-baseline.git
       ```
 
     Web hosted fileshare (also supports .zip):
       ```
-      #{Inspec::Dist::EXEC_NAME} exec https://webserver/linux-baseline.tar.gz
+      #{ChefUtils::Dist::Inspec::EXEC} exec https://webserver/linux-baseline.tar.gz
       ```
 
     Web hosted fileshare with basic authentication (supports .zip):
       ```
-      #{Inspec::Dist::EXEC_NAME} exec https://username:password@webserver/linux-baseline.tar.gz
+      #{ChefUtils::Dist::Inspec::EXEC} exec https://username:password@webserver/linux-baseline.tar.gz
       ```
   EOT
   exec_options

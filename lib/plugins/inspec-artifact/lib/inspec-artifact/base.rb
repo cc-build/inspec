@@ -4,12 +4,12 @@ require "pathname"
 require "set"
 require "tempfile"
 require "yaml"
-require "inspec/dist"
+require "chef-utils/dist"
 
 module InspecPlugins
   module Artifact
     class Base
-      include Inspec::Dist
+      include ChefUtils::Dist
 
       KEY_BITS = 2048
       KEY_ALG = OpenSSL::PKey::RSA
@@ -94,7 +94,7 @@ module InspecPlugins
           p = Pathname.new(path_to_profile)
           p = p.join("inspec.yml")
           unless p.exist?
-            raise "#{path_to_profile} doesn't appear to be a valid #{PRODUCT_NAME} profile"
+            raise "#{path_to_profile} doesn't appear to be a valid #{PRODUCT} profile"
           end
 
           yaml = YAML.load_file(p.to_s)
@@ -109,7 +109,7 @@ module InspecPlugins
           end
         rescue => e
           # rewrap it and pass it up to the CLI
-          raise "Error reading #{PRODUCT_NAME} profile metadata: #{e}"
+          raise "Error reading #{PRODUCT} profile metadata: #{e}"
         end
 
         yaml
