@@ -7,8 +7,8 @@
 - Log to stderr when using html2 reporter [#5126](https://github.com/inspec/inspec/pull/5126) ([james-stocks](https://github.com/james-stocks))
 <!-- latest_release -->
 
-<!-- release_rollup since=4.21.1 -->
-### Changes since 4.21.1 release
+<!-- release_rollup since=4.21.3 -->
+### Changes since 4.21.3 release
 
 #### Merged Pull Requests
 - Log to stderr when using html2 reporter [#5126](https://github.com/inspec/inspec/pull/5126) ([james-stocks](https://github.com/james-stocks)) <!-- 4.21.3 -->
@@ -16,6 +16,13 @@
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v4.21.3](https://github.com/inspec/inspec/tree/v4.21.3) (2020-07-02)
+
+#### Merged Pull Requests
+- Address test:isolated failure [#5117](https://github.com/inspec/inspec/pull/5117) ([james-stocks](https://github.com/james-stocks))
+- Log to stderr when using html2 reporter [#5126](https://github.com/inspec/inspec/pull/5126) ([james-stocks](https://github.com/james-stocks))
+<!-- latest_stable_release -->
+
 ## [v4.21.1](https://github.com/inspec/inspec/tree/v4.21.1) (2020-06-29)
 
 #### New Features
@@ -23,7 +30,6 @@
 
 #### Enhancements
 - Additions to the interface resource [#5036](https://github.com/inspec/inspec/pull/5036) ([clintoncwolfe](https://github.com/clintoncwolfe))
-<!-- latest_stable_release -->
 
 ## [v4.20.10](https://github.com/inspec/inspec/tree/v4.20.10) (2020-06-18)
 
