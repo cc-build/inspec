@@ -39,9 +39,12 @@ module Inspec
     end
 
     def fetch
-      if cache.exists?(cache_key)
+      ##
+      # Plain, local `inspec exec <my_profile>` would not set a cache_key. This
+      # is set in other cases such as a versioned compliance run.
+      if cache.exists?(cache_key) && supports_cache?
         Inspec::Log.debug "Using cached dependency for #{target}"
-        [cache.prefered_entry_for(cache_key), false]
+        [cache.preferred_entry_for(cache_key), false]
       else
         Inspec::Log.debug "Dependency does not exist in the cache #{target}"
         fetcher.fetch(cache.base_path_for(fetcher.cache_key))
@@ -64,6 +67,24 @@ module Inspec
         has changed since your lockfile was generated.
       EOF
       raise exception_message if fetcher.resolved_source[:sha256] != target[:sha256]
+    end
+
+    private
+
+    ##
+    # Sometimes a cache will not be used. For instance, when the user has
+    # uploaded to automate without specifying a version.
+    #
+    # inspec exec compliance://admin/my_profile#0.2.0 <-- Uses cache
+    #
+    # inspec exec compliance://admin/my_profile <-- Does not use cache
+    #
+    def supports_cache?
+      return true if target.is_a?(Hash)
+      return true if target&.match(%r{^compliance:\/\/.*#(\d|\.)+$})
+      return true unless target&.include?("compliance")
+
+      false
     end
   end
 end

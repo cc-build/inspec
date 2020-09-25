@@ -23,7 +23,7 @@ module Inspec
       # ignore
     end
 
-    def prefered_entry_for(key)
+    def preferred_entry_for(key)
       path = base_path_for(key)
       if File.directory?(path)
         path
