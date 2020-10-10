@@ -79,15 +79,6 @@ export GEM_PATH="$GEM_PATH"
 
 exec $(pkg_path_for core/ruby)/bin/ruby $real_bin \$@
 EOF
-  cat <<EOF > "$pkg_prefix/bin/cinc-auditor-wrapper"
-#!$(pkg_path_for core/bash)/bin/bash
-echo "Redirecting to cinc-auditor..."
-
-exec $pkg_prefix/bin/cinc-auditor $@
-EOF
-  ln -s "$pkg_prefix/bin/cinc-auditor-wrapper" "$pkg_prefix/bin/inspec"
-  chmod -v 755 "$bin" "$pkg_prefix/bin/cinc-auditor-wrapper" "$pkg_prefix/bin/inspec"
-}
 
 do_strip() {
   return 0
