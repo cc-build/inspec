@@ -25,6 +25,6 @@ Gem::Specification.new do |spec|
     Dir.glob("{lib,bin}/**/*", File::FNM_DOTMATCH).reject { |f| File.directory?(f) }
 
   spec.bindir = "bin"
-  spec.executables = %w{cinc-auditor inspec}
+  spec.executables = %w{cinc-auditor cinc-auditor-wrapper inspec}
 
 end

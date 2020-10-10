@@ -79,6 +79,7 @@ export GEM_PATH="$GEM_PATH"
 
 exec $(pkg_path_for core/ruby)/bin/ruby $real_bin \$@
 EOF
+}
 
 do_strip() {
   return 0
