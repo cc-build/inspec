@@ -54,8 +54,15 @@ do_install() {
     gem install cinc-auditor-bin*.gem --no-document
   popd
 
-  wrap_inspec_bin
-
+  wrap_inspec_bin $bin
+  
+  pushd "$pkg_prefix/bin/"
+     build_line "Copy wrapper in place"
+     cp "$GEM_HOME/gems/cinc-auditor-bin-${pkg_version}/bin/cinc-auditor-wrapper" ./
+     build_line "Symlink cinc-auditor-wrapper to inspec for compatibility"
+     ln -s cinc-auditor-wrapper inspec
+  popd
+  
   # Certain gems (timeliness) are getting installed with world writable files
   # This is removing write bits for group and other.
   find "$GEM_HOME" -xdev -perm -0002 -type f -print 2>/dev/null | xargs -I '{}' chmod go-w '{}'
@@ -79,6 +86,7 @@ export GEM_PATH="$GEM_PATH"
 
 exec $(pkg_path_for core/ruby)/bin/ruby $real_bin \$@
 EOF
+  chmod -v 755 "$bin"
 }
 
 do_strip() {
