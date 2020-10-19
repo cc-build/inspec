@@ -402,7 +402,7 @@ class Inspec::InspecCLI < Inspec::BaseCLI
 
     FileUtils.rm_r Dir.glob(File.expand_path(File.expand_path(o[:vendor_cache]))
 
-    o[:logger] = Logger.new($stderr)
+    o[:logger] = Logger.new($stdout)
     o[:logger].level = get_log_level(o[:log_level])
     o[:logger].info "== InSpec cache cleared successfully =="
   end
