@@ -175,7 +175,6 @@ class Inspec::InspecCLI < Inspec::BaseCLI
     o[:logger].level = get_log_level(o[:log_level])
     o[:backend] = Inspec::Backend.create(Inspec::Config.mock)
 
-
     # Force vendoring with overwrite when archiving
     vendor_options = o.dup
     vendor_options[:overwrite] = true
@@ -401,7 +400,7 @@ class Inspec::InspecCLI < Inspec::BaseCLI
     o = config
     configure_logger(o)
 
-    FileUtils.rm_rf File.expand_path(o[:vendor_cache])
+    FileUtils.rm_r Dir.glob(File.expand_path(File.expand_path(o[:vendor_cache]))
 
     o[:logger] = Logger.new($stderr)
     o[:logger].level = get_log_level(o[:log_level])
