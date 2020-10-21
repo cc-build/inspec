@@ -399,8 +399,7 @@ class Inspec::InspecCLI < Inspec::BaseCLI
   def clear_cache
     o = config
     configure_logger(o)
-
-    FileUtils.rm_r Dir.glob(File.expand_path(File.expand_path(o[:vendor_cache]))
+    FileUtils.rm_r Dir.glob(File.expand_path(o[:vendor_cache]))
 
     o[:logger] = Logger.new($stdout)
     o[:logger].level = get_log_level(o[:log_level])
