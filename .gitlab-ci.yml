@@ -6,11 +6,34 @@ workflow:
   rules:
     # Run if this is a merge request
     - if: $CI_MERGE_REQUEST_ID
+    - if: $CI_PIPELINE_SOURCE == "schedule"
 
 server-testing:
   stage: test
+  rules:
+    # Run if this is a merge request
+    - if: $CI_MERGE_REQUEST_ID
   variables:
     CINC_REF: $CI_COMMIT_REF_NAME
   trigger:
     project: cinc-project/distribution/auditor
     strategy: depend
+
+rebase-cinc:
+  stage: test
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$GIT_SSH_PRIV_KEY")
+    - git config --global user.email "gitlab@cinc.sh"
+    - git config --global user.name "Cinc-bot"
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - git clone git@gitlab.com:${CI_PROJECT_PATH}.git
+    - cd ${CI_PROJECT_NAME}
+    - git checkout stable/cinc
+    - git rebase origin/master
+    - git push --force origin stable/rebased
+  rules:
+    - if: ($CI_COMMIT_BRANCH == "stable/cinc")
