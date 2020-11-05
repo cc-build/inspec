@@ -36,4 +36,4 @@ rebase-cinc:
     - git rebase origin/master
     - git push --force origin stable/rebased
   rules:
-    - if: ($CI_COMMIT_BRANCH == "stable/cinc")
+    - if: ($CI_COMMIT_BRANCH == "stable/rebased")
