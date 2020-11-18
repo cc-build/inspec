@@ -11,6 +11,7 @@ describe Inspec::Reporters::Yaml do
     it "confirm render output" do
       output = File.read("test/fixtures/reporters/yaml_output")
       report.render
+      require 'pry'; binding.pry
       _(report.rendered_output).must_equal output
     end
   end
