@@ -203,11 +203,11 @@ describe "inspec exec with json formatter" do
       # This is a raw grep of the argument(s) passed to the resource, currently
       # used by automate to identify and sort differing resources
       it "has a resource_params that's empty" do
-        _(result["resource_params"]).must_equal "[]"
+        _(result["resource_params"]).must_equal "[\"/\"]"
       end
 
       it "has a resource_params with values" do
-        _(result2["resource_params"]).must_equal "[]"
+        _(result2["resource_params"]).must_equal "[\"/\"]"
       end
     end
 
