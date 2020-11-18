@@ -163,7 +163,7 @@ module Inspec::Formatters
         # name. However, if we wanted the `name` attribute against the class
         # to be canonical for this case (consider edge cases!) we would use
         # example.metadata[:described_class].instance_variable_get(:@__resource_name__)&.to_s
-        resource_name: example.metadata[:described_class].class.superclass.name,
+        resource_class: example.metadata[:described_class].class.superclass.name,
         # This is a raw grep of the text passed to the resource in any format,
         # and is used to enforce near-uniqueness against the resource.
         resource_params: find_resource_params(example.metadata[:described_class]),

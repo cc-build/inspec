@@ -196,8 +196,8 @@ describe "inspec exec with json formatter" do
         _(result["code_desc"]).must_equal "File / is expected to be directory"
       end
 
-      it "has a resource_name" do
-        _(result["resource_name"]).must_equal "file"
+      it "has a resource_class" do
+        _(result["resource_class"]).must_equal "file"
       end
 
       # This is a raw grep of the argument(s) passed to the resource, currently
