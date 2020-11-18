@@ -188,7 +188,7 @@ describe "inspec exec with json formatter" do
       _(ex1["impact"]).must_equal 0.7
     end
 
-    describe 'results' do
+    describe "results" do
       let(:result) { ex1["results"][0] }
       let(:result2) { ex2["results"][0] }
 
@@ -210,7 +210,6 @@ describe "inspec exec with json formatter" do
         _(result2["resource_params"]).must_equal "[\"/\"]"
       end
     end
-
 
     it "has all the metadata" do
       actual = profile.dup
