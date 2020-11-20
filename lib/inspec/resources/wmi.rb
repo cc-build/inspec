@@ -66,13 +66,18 @@ module Inspec::Resources
 
       # run wmi command and filter empty wmi
       script = <<-EOH
-      Filter Aggregate
-      {
-          $arr = @{}
-          $_.properties | % {
-              $arr.Add($_.name, $_.value)
+      Function Aggregate {
+        $propsHash = @{}
+        ForEach ($wmiObj in $Input) {
+          ForEach ($wmiProp in $wmiObj.properties) {
+            If($propsHash.ContainsKey($wmiProp.name)) {
+              $propsHash[$wmiProp.name].add($wmiProp.value) | Out-Null
+            } Else {
+              $propsHash[$wmiProp.name] = [System.Collections.ArrayList]@($wmiProp.value)
+            }
           }
-          $arr
+        }
+        $propsHash
       }
       Get-WmiObject #{params} | Aggregate | ConvertTo-Json
       EOH
