@@ -47,6 +47,9 @@ group :integration do
   gem "kitchen-vagrant", ">= 1.7"
   gem "kitchen-inspec", ">= 2.0"
   gem "kitchen-dokken", ">= 2.11"
+  if Gem.ruby_version.to_s.start_with?("2.5")
+    gem "chef-zero", "< 15" # 15 requires ruby 2.6
+  end
   gem "git"
 end
 
