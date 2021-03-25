@@ -22,6 +22,18 @@ describe "filtertable functional tests" do
     control_hash
   end
 
+  def skipped_control_test_outcomes(run_result)
+    skipped_controls = @json["profiles"][0]["controls"].select { |ctl| ctl["results"][0]["status"] == "skipped" }
+
+    # Re-package any skipped controls into a hash mapping control_id => message
+    # We will later test against this, as it provides more informative test output
+    control_hash = {}
+    skipped_controls.each do |ctl|
+      control_hash[ctl["id"]] = ctl["results"][0]["skip_message"]
+    end
+    control_hash
+  end
+
   def expect_clean_run(controls)
     run_result = run_result_for_controls(controls)
     outcome_hash = failed_control_test_outcomes(run_result)
@@ -128,9 +140,9 @@ describe "filtertable functional tests" do
     it "should show the exact error message" do
       controls = ["exception_catcher_test"]
       run_result = run_result_for_controls(controls)
-      outcome_hash = failed_control_test_outcomes(run_result)
-      _(outcome_hash["exception_catcher_test"]).must_include "`tags` for resource is missing"
-      assert_exit_code 100, run_result
+      outcome_hash = skipped_control_test_outcomes(run_result)
+      _(outcome_hash["exception_catcher_test"]).must_include "Can't read file: \/etc\/shadow"
+      assert_exit_code 101, run_result
     end
   end
 end
