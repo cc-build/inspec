@@ -1,4 +1,4 @@
-# copyright: 218, The Authors
+# copyright: 2021, Chef Software, Inc.
 title "Verifying loading of hashmap inputs using metadata and external file"
 
 control "hashmap-metadata" do
