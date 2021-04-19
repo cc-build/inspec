@@ -111,7 +111,7 @@ module Inspec::Resources
     end
 
     def members
-      flatten_entry(group_info, "members")
+      flatten_entry(group_info, "members") || []
     end
 
     def local
