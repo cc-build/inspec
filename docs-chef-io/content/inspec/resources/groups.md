@@ -13,6 +13,11 @@ platform = "os"
 
 Use the `groups` Chef InSpec audit resource to test multiple groups on the system.
 
+Following groups are used based on the system:
+
+- in **Non-Windows** systems, it only works with groups listed in file `/etc/group` and not local groups.
+- in **Windows** system, it only works with local groups.
+
 ## Availability
 
 ### Installation
