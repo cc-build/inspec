@@ -104,4 +104,9 @@ describe Inspec::Resources::FileResource do
 
     _(proc { resource.send(:more_permissive_than?, "0888") }).must_raise(ArgumentError)
   end
+
+  it "when file does not exist" do
+    resource = MockLoader.new(:ubuntu1404).load_resource("file", "file_does_not_exist")
+    _(proc { resource.send(:validate_file_existence) }).must_raise(Inspec::Exceptions::ResourceFailed)
+  end
 end
