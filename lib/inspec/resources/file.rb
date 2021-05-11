@@ -141,6 +141,7 @@ module Inspec::Resources
     alias sticky? sticky
 
     def more_permissive_than?(max_mode = nil)
+      return false unless exist?
       raise ArgumentError, "You must provide a value for the `maximum allowable permission` for the file." if max_mode.nil?
       raise ArgumentError, "You must provide the `maximum permission target` as a `String`, you provided: " + max_mode.class.to_s unless max_mode.is_a?(String)
       raise ArgumentError, "The value of the `maximum permission target` should be a valid file mode in 4-digit octal format: for example, `0644` or `0777`" unless /(0)?([0-7])([0-7])([0-7])/.match?(max_mode)
