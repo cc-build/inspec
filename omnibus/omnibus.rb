@@ -47,3 +47,5 @@ arch = if %w{x86 x64}.include?((ENV["OMNIBUS_WINDOWS_ARCH"] || "").downcase)
          :x86
        end
 windows_arch arch
+
+fips_mode (ENV["OMNIBUS_FIPS_MODE"] || "").casecmp("true") >= 0
