@@ -7,8 +7,8 @@
 - Fix related to loading dependent profiles from a profile in shell [#5547](https://github.com/inspec/inspec/pull/5547) ([Nik08](https://github.com/Nik08))
 <!-- latest_release -->
 
-<!-- release_rollup since=4.37.23 -->
-### Changes since 4.37.23 release
+<!-- release_rollup since=4.37.25 -->
+### Changes since 4.37.25 release
 
 #### Merged Pull Requests
 - Fix related to loading dependent profiles from a profile in shell [#5547](https://github.com/inspec/inspec/pull/5547) ([Nik08](https://github.com/Nik08)) <!-- 4.37.25 -->
@@ -16,13 +16,19 @@
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v4.37.25](https://github.com/inspec/inspec/tree/v4.37.25) (2021-06-10)
+
+#### Merged Pull Requests
+- sshd_config is for daemon, not client - typo [#5549](https://github.com/inspec/inspec/pull/5549) ([jblaine](https://github.com/jblaine))
+- Fix related to loading dependent profiles from a profile in shell [#5547](https://github.com/inspec/inspec/pull/5547) ([Nik08](https://github.com/Nik08))
+<!-- latest_stable_release -->
+
 ## [v4.37.23](https://github.com/inspec/inspec/tree/v4.37.23) (2021-06-03)
 
 #### Merged Pull Requests
 - Update inspec init plugin  [#5536](https://github.com/inspec/inspec/pull/5536) ([Vasu1105](https://github.com/Vasu1105))
 - Removed support for compliance and a1 server from InSpec compliance [#5534](https://github.com/inspec/inspec/pull/5534) ([Nik08](https://github.com/Nik08))
 - Add Ubuntu to list of FIPS platforms [#5533](https://github.com/inspec/inspec/pull/5533) ([clintoncwolfe](https://github.com/clintoncwolfe))
-<!-- latest_stable_release -->
 
 ## [v4.37.20](https://github.com/inspec/inspec/tree/v4.37.20) (2021-05-26)
 
