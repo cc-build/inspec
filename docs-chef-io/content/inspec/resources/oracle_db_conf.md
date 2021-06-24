@@ -21,15 +21,20 @@ This resource is distributed along with Chef InSpec itself. You can use it autom
 
 A `oracle_db_conf` resource block declares system parameters which are defined in `V$SYSTEM_PARAMETER` database view, and then compares those parameters to the values stated in the test:
 
-  # Test parameters set within the database view
   describe oracle_db_conf(user: 'USER', password: 'PASSWORD') do
-    its("audit_sys_operations") { should cmp "true" }
-    its("sql92_security") { should cmp "true" }
+    its("config item") { should cmp "value" }
   end
 
 ## Examples
 
 The following examples show how to use this Chef InSpec audit resource.
+
+  # Test parameters set within the database view
+  
+  describe oracle_db_conf(user: 'USER', password: 'PASSWORD') do
+    its("audit_sys_operations") { should cmp "true" }
+    its("sql92_security") { should cmp "true" }
+  end
 
 ## Matchers
 
