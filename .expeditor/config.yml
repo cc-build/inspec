@@ -144,8 +144,8 @@ subscriptions:
         - built_in:bump_version
 
 subscriptions:
- - workload: artifact_published:unstable:inspec:{{version_constraint}}
-   actions:
+  - workload: artifact_published:unstable:inspec:{{version_constraint}}
+    actions:
     - trigger_pipeline:docker/build
     - bash:.expeditor/buildkite/wwwrelease.sh:
        post_commit: true
