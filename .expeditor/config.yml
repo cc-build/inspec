@@ -146,9 +146,9 @@ subscriptions:
 subscriptions:
   - workload: artifact_published:unstable:inspec:{{version_constraint}}
     actions:
-    - trigger_pipeline:docker/build
-    - bash:.expeditor/buildkite/wwwrelease.sh:
-       post_commit: true
+     - trigger_pipeline:docker/build
+     - bash:.expeditor/buildkite/wwwrelease.sh:
+        post_commit: true
  - workload: artifact_published:current:inspec:{{version_constraint}}
    actions:
     - built_in:promote_docker_images
